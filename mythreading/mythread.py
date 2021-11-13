@@ -4,22 +4,25 @@ Author: lishaogang
 version: 
 Date: 2021-11-09 17:15:56
 LastEditors: lishaogang
-LastEditTime: 2021-11-09 17:22:27
+LastEditTime: 2021-11-13 15:10:49
 '''
 
-import threading, time
+import threading
+import time
 
 n = 0
-lock = threading.Lock() # 声明一个锁
+lock = threading.Lock()  # 声明一个锁
+
 
 def thread1():
     global n
     for i in range(1000000):
-        lock.acquire() #获取锁
-        n+=1
-        n-=1
+        lock.acquire()  # 获取锁
+        n += 1
+        n -= 1
         lock.release()  # 释放锁
     print(n)
+
 
 if __name__ == "__main__":
     thd1 = threading.Thread(target=thread1)
