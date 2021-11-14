@@ -4,11 +4,16 @@ Author: lishaogang
 version: 
 Date: 2021-11-13 16:16:38
 LastEditors: lishaogang
-LastEditTime: 2021-11-13 17:12:16
+LastEditTime: 2021-11-14 10:44:05
 '''
 
 import pytest
 
+def setup_module():
+    print('test1 start')
+
+def teardown_module():
+    print('test1 end')
 
 class TestA():
     def test_a1(self):
