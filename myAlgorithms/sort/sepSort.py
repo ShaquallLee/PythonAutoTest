@@ -4,7 +4,7 @@ Author: lishaogang
 version: 
 Date: 2021-11-15 08:35:33
 LastEditors: lishaogang
-LastEditTime: 2021-11-15 09:53:08
+LastEditTime: 2021-11-15 10:32:23
 '''
 ssum = 0
 
@@ -50,7 +50,7 @@ def merge4SmallSum(arr, left, mid, right):
     global ssum
     i,j=left,mid
     while i<mid and j<right:
-        if arr[i]<=arr[j]:
+        if arr[i]<arr[j]:
             res.append(arr[i])
             ssum+=(right-j)*arr[i] ##只需要在归并排序基础上加上这一行代码即可
             i+=1
