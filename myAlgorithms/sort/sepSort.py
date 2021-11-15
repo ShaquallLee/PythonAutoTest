@@ -4,9 +4,10 @@ Author: lishaogang
 version: 
 Date: 2021-11-15 08:35:33
 LastEditors: lishaogang
-LastEditTime: 2021-11-15 10:32:23
+LastEditTime: 2021-11-15 10:47:29
 '''
 ssum = 0
+rsum = 0
 
 def merge(arr, left, mid, right):
     res = []
@@ -17,6 +18,36 @@ def merge(arr, left, mid, right):
             i+=1
         else:
             res.append(arr[j])
+            j+=1
+    if i<mid:
+        res+=arr[i:mid]
+    if j<right:
+        res+=arr[j:right]
+    arr[left:right]=res
+
+def merge4ReversedCouple(arr, left, mid, right):
+    '''
+    用于求解逆序对问题：
+        对于一个数组中，任意i和j两个位置，且i<j,
+        有arr[i]>arr[j],则称i和j位置的数是一个逆数对。
+        求这个数组中共有多少个逆数对
+    求解：
+        也是使用归并排序的思想
+        merge时，当左边的数比右边的数大时，
+        说明左边数组剩余位置的元素也都比右边这个数大
+        此时，rsum += 左边数组长度-左边指针当前位置
+        算法运行结束后，rsum的值即为逆序对的个数
+    '''
+    global rsum
+    res = []
+    i,j=left, mid
+    while i<mid and j<right:
+        if arr[i]<=arr[j]:
+            res.append(arr[i])
+            i+=1
+        else:
+            res.append(arr[j])
+            rsum+=mid-i
             j+=1
     if i<mid:
         res+=arr[i:mid]
@@ -70,7 +101,7 @@ def sepSort(arr, left, right):
     mid = left + ((right-left)>>1)
     sepSort(arr, left, mid)
     sepSort(arr, mid, right)
-    merge4SmallSum(arr, left, mid, right)
+    merge4ReversedCouple(arr, left, mid, right)
 
 
 if __name__ == "__main__":
@@ -78,4 +109,4 @@ if __name__ == "__main__":
     # test(arr)
     sepSort(arr, 0, len(arr))
     print(arr)
-    print(ssum)
+    print(rsum)
