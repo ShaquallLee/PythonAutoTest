@@ -1,0 +1,7 @@
+static文件夹用于保存静态文件
+templates用于保存html文件，即网站的模板
+app.py用于启动项目
+路由：控制访问对象及方式：有静态路由和动态路由两种
+
+返回json格式的结果，需要导入jsonify：如下：
+    from flask import jsonify
