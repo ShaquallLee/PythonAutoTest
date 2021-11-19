@@ -4,10 +4,10 @@ Author: lishaogang
 version: 
 Date: 2021-11-18 17:09:53
 LastEditors: lishaogang
-LastEditTime: 2021-11-18 19:06:22
+LastEditTime: 2021-11-19 16:38:53
 '''
 
-import csv, os, json
+import csv, os, json, time
 from _pytest.mark import param
 
 from attr.setters import NO_OP
@@ -39,3 +39,13 @@ def request(url, mode, data=None, header=None):
     elif mode in ['POST', 'Post', 'post']:
         res = rq.post(url=url, params=data, headers=header)
     return res
+
+def getTime():
+    '''
+    获取当前时间并格式化返回'''
+    return time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime()) # %H:%M:%S
+
+if __name__ == '__main__':
+    t = getTime()
+    print(t)
+    print(type(t))

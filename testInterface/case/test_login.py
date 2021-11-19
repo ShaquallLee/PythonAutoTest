@@ -4,7 +4,7 @@ Author: lishaogang
 version: 
 Date: 2021-11-18 17:07:03
 LastEditors: lishaogang
-LastEditTime: 2021-11-18 19:14:05
+LastEditTime: 2021-11-19 16:38:36
 '''
 import sys
 sys.path.append('F:\githubfiles\PythonAutoTest')
