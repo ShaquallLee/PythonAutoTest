@@ -4,7 +4,7 @@ Author: lishaogang
 version: 
 Date: 2021-11-18 17:07:03
 LastEditors: lishaogang
-LastEditTime: 2021-11-19 16:38:36
+LastEditTime: 2021-11-19 16:54:09
 '''
 import sys
 sys.path.append('F:\githubfiles\PythonAutoTest')
@@ -19,7 +19,7 @@ data = readCsv(data_path+'/login.csv')
 
 
 @pytest.mark.skipif(data[5][1] != 'Y' and data[5][1] != 'y', reason='此版本不执行该用例')
-@pytest.mark.parametrize('info', data[7:])
+@pytest.mark.parametrize('info', data[7:8])
 def testLogin(info):
     print('测试'+info[0])
     pattern = r'account=(.*)，\npassword=(.*)'
