@@ -4,7 +4,7 @@ Author: lishaogang
 version: 
 Date: 2021-11-18 17:07:03
 LastEditors: lishaogang
-LastEditTime: 2021-11-19 16:54:09
+LastEditTime: 2021-11-22 11:14:53
 '''
 import sys
 sys.path.append('F:\githubfiles\PythonAutoTest')
@@ -33,6 +33,7 @@ def testLogin(info):
         das["password"]=res[0][1]
         req = request(data[1][1], data[2][1], data=das).json()
         assert req["code"]==info[2] and req["message"]==info[3]
+
 
 
 if __name__ == '__main__':

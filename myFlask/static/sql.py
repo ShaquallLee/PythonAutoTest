@@ -4,7 +4,7 @@ Author: lishaogang
 version: 
 Date: 2021-11-18 16:43:57
 LastEditors: lishaogang
-LastEditTime: 2021-11-18 16:57:36
+LastEditTime: 2021-11-22 11:04:22
 '''
 import pymysql
 
@@ -34,6 +34,23 @@ def sql4login(user, pwd):
     conn.close()
     return res#, data
 
+def getStudents():
+    '''
+    获取学生列表'''
+    conn = pymysql.connect(
+        host='localhost',
+        user='root',password='lishao123',
+        database='systest',
+        charset='utf8')
+    cur = conn.cursor()
+
+    sql = "select name from students"
+    res = cur.execute(sql)
+    data = cur.fetchall()
+    cur.close()
+    conn.close()
+    return data
+
 if __name__ == '__main__':
-    res = sql4login('lishao','12345')
+    res = getStudents()#sql4login('lishao','12345')
     print(res)
