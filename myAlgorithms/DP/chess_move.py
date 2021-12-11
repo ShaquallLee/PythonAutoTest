@@ -5,7 +5,7 @@ Author: lishaogang
 version: 
 Date: 2021-12-07 10:04:10
 LastEditors: lishaogang
-LastEditTime: 2021-12-07 10:35:37
+LastEditTime: 2021-12-07 14:57:34
 '''
 
 def chessMove(x, y, step, startx, starty):
@@ -44,7 +44,7 @@ def chessMove2(x, y, step, startx, starty):
                                     getN(xi-1, yi-2, stepi-1),
                                     getN(xi-2, yi+1, stepi-1),
                                     getN(xi-2, yi-1, stepi-1)])
-    return dp[x][y][step]
+    return dp[x][y][step] 
 
 if __name__ == "__main__":
     print(chessMove2(0,2, 4, 0, 0))
