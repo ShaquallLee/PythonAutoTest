@@ -4,7 +4,7 @@ Author: lishaogang
 version: 
 Date: 2021-11-13 14:34:59
 LastEditors: lishaogang
-LastEditTime: 2021-11-15 12:08:46
+LastEditTime: 2021-12-19 10:35:13
 '''
 import random
 
@@ -42,7 +42,6 @@ def partition(arr, left, right):
     荷兰国旗问题：
         对于一个数组，将其划分为大于x、等于x、小于x的三部分
     '''
-    prel,prer = left, right
     i = left
     x = arr[right]
     while i<=right:
@@ -67,10 +66,41 @@ def quickSort2(arr, left, right):
     quickSort2(arr, left, nl)
     quickSort2(arr, nr, right)
 
+
+
+def test_partition(arr, left, right):
+    x = arr[right]
+    i = left
+
+    while i<=right:
+        if arr[i]<x:
+            arr[i],arr[left] = arr[left],arr[i]
+            i+=1
+            left+=1
+        elif arr[i]>x:
+            arr[i], arr[right] = arr[right], arr[i]
+            right-=1
+        else:
+            i+=1
+    return left-1, right
+
+
+def test_quicksort(arr, left, right):
+    if right-left<1:
+        return
+    
+    mid = random.randint(left, right)
+    arr[mid], arr[right] = arr[right], arr[mid]
+    nl, nr= test_partition(arr, left, right)
+    test_quicksort(arr,left, nl)
+    test_quicksort(arr, nr, right)
+    
+
+
 if __name__ == '__main__':
-    # arr = [random.randint(0, 100) for i in range(10)]
-    arr = [75, 80, 1, 56, 1, 58, 4, 46, 22, 9]
-    print(arr)
+    arr = [random.randint(0, 100000) for i in range(100000)]
+    # arr = [75, 80, 1, 56, 1, 58, 4, 46, 22, 9]
+    # print(arr)
     # quickSort(arr, 0, 19)
-    quickSort2(arr,0,len(arr)-1)
-    print(arr)
+    test_quicksort(arr,0,len(arr)-1)
+    print(arr==sorted(arr))
