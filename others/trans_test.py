@@ -4,7 +4,7 @@ Author: lishaogang
 version: 
 Date: 2021-12-20 08:11:11
 LastEditors: lishaogang
-LastEditTime: 2021-12-21 15:47:02
+LastEditTime: 2021-12-24 17:26:56
 '''
 
 import random
@@ -98,23 +98,50 @@ class A(object):
     #     return cls.instance
 
 
+def quickmearge(arr, left, right):
+    '''
+    快速排序'''
+    i = left
+    mid = arr[right]
+    while i<=right:
+        if arr[i]<mid:
+            arr[left], arr[i] = arr[i], arr[left]
+            i+=1
+            left+=1
+        elif arr[i]>mid:
+            arr[i], arr[right] = arr[right], arr[i]
+            right-=1
+        else:
+            i+=1
+    return left-1, right
+# import random
+def quicksort(arr, left, right):
+    if right-1<left:
+        return
+    x = random.randint(left, right)
+    arr[x], arr[right] = arr[right], arr[x]
+
+    l, r = quickmearge(arr, left, right)
+
+    quicksort(arr, left, l)
+    quicksort(arr, r, right)
 
 
 
 if __name__ == "__main__":
-    a = A(12)
-    print(a._a)
+    # a = A(12)
+    # print(a._a)
 
-    b = A(13)
-    print(a._a, b._a)
-    # print(a.instance)
-    # print(b.instance)
-    x,y,z = "12","1+","14"
-    # print(id(x))
-    print(sum(x,y,z))
+    # b = A(13)
+    # print(a._a, b._a)
+    # # print(a.instance)
+    # # print(b.instance)
+    # x,y,z = "12","1+","14"
+    # # print(id(x))
+    # print(sum(x,y,z))
 
-    # arr = [random.randint(0, 100) for i in range(20)]
+    arr = [random.randint(0, 100) for i in range(20)]
 
-    # print(arr)
-    # sep_sort(arr, 0, 19)
-    # print(arr)
+    print(arr)
+    quicksort(arr, 0, 19)
+    print(arr)
