@@ -4,7 +4,7 @@ Author: lishaogang
 version: 
 Date: 2021-12-06 18:15:24
 LastEditors: lishaogang
-LastEditTime: 2021-12-06 18:56:46
+LastEditTime: 2021-12-31 16:31:06
 '''
 
 
@@ -98,9 +98,44 @@ def coinAdd3(coins, rest):
     return dp[0][rest]
 
 
+def coinAdd4(coins, num):
+    '''
+    通过无限数量的coins中的硬币面额，组成价值为num的值，
+    求总共有多少种组合方法
+    '''
+    dp = [[0]*(num+1) for i in range(len(coins))]
+    for i in range(len(coins)):
+        dp[i][coins[i]]=1
+    for i in range(len(coins)):
+        for j in range(coins[i]+1, num+1):
+            for k in range(i+1):
+                if j-coins[i]>0:
+                    dp[i][j] += dp[i-k][j-coins[i]]
+    res = 0
+    for i in range(len(coins)):
+        res+=dp[i][num]
+    return res
+
+def coinAdd5(coins, num): 
+    '''
+    @coins: 所有可用的面额
+    @num：最后需要凑成的金额数
+    求解最少需要多少金币，才能凑成num值
+    '''
+    dp = [num+1]*(num+1)
+    for x in range(num+1):
+        for y in coins:
+            if x-y<0:
+                continue
+            dp[x] = min(dp[x], 1+dp[x-y])
+    return dp[num] if dp[num]!=num+1 else -1
+
 if __name__ == "__main__":
-    coins = [3, 5, 2, 1, 4, 7]
-    # dp1 = [[-2]*11 for i in range(len(coins)+1)]
-    # res = coinAdd2(coins, 0, 10, dp1)
-    res = coinAdd3(coins, 10)
+    # coins = [3, 5, 2, 1, 4, 7]
+    # # dp1 = [[-2]*11 for i in range(len(coins)+1)]
+    # # res = coinAdd2(coins, 0, 10, dp1)
+    # res = coinAdd3(coins, 10)
+    # print(res)
+    coins = [2,5]
+    res = coinAdd5(coins, 3)
     print(res)

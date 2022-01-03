@@ -4,18 +4,20 @@ Author: lishaogang
 version: 
 Date: 2021-12-25 08:05:41
 LastEditors: lishaogang
-LastEditTime: 2021-12-25 08:28:36
+LastEditTime: 2022-01-03 15:07:44
 '''
+
 
 class Lnode():
     def __init__(self, val=-1):
         self.val = val
         self.next = None
 
+
 class Mylist():
     def __init__(self, *args):
         self.head = Mylist.makeList(*args)
-    
+
     @staticmethod
     def print(head):
         '''
@@ -24,7 +26,7 @@ class Mylist():
         res = []
         while node:
             res.append(node.val)
-            node= node.next
+            node = node.next
         return res
 
     @staticmethod
@@ -39,7 +41,8 @@ class Mylist():
             newnode = Lnode(x)
             node.next = newnode
             node = newnode
-        return head      
+        return head
+
 
 class Treenode():
     def __init__(self, val=-1):
